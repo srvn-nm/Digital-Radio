@@ -27,3 +27,11 @@ def change_frequency(signal_data, freq_shift):
     complex_signal = signal_data * np.exp(1j * 2 * np.pi * freq_shift * time)
     shifted_signal = np.real(complex_signal)
     return shifted_signal
+
+
+# playing audio
+def play_audio(audio_data):
+    sd.play(audio_data, SAMPLING_RATE)
+    sd.wait()
+
+
