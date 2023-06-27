@@ -35,3 +35,13 @@ def play_audio(audio_data):
     sd.wait()
 
 
+if __name__ == '__main__':
+    signal_data = read_input_file('input_signal.txt')
+    while True:
+        user_freq = float(input('please enter your desired radio network frequency: '))
+        if user_freq == 0:
+            break
+
+        filtered_signal = apply_bandpass_filter(signal_data, user_freq)
+        audio_data = change_frequency(filtered_signal, user_freq)
+        play_audio(audio_data)
