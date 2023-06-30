@@ -53,9 +53,16 @@ def change_frequency(signal_data, freq_shift):
         numpy.ndarray: The shifted signal.
     """
     time = np.arange(len(signal_data)) / SAMPLING_RATE
-    complex_signal = signal_data * np.exp(1j * 2 * np.pi * freq_shift * time)
-    shifted_signal = np.real(complex_signal)
-    return shifted_signal
+
+
+    start_freq = 0
+    end_freq = freq_shift * 1000
+    shifted_signal = signal_data * signal.chirp(time, start_freq, time[-1],  end_freq)
+    return signal_data * shifted_signal
+
+    # complex_signal = signal_data * np.exp(1j * 2 * np.pi * freq_shift * time)
+    # shifted_signal = np.real(complex_signal)
+    # return shifted_signal
 
 
 def play_audio(audio_data):
